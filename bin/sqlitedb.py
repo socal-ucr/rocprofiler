@@ -64,6 +64,8 @@ class SQLiteDB:
       cursor.execute(stm)
     self.connection.commit()
 
+  # Moe
+
   # add columns with expression
   def add_data_column(self, table_name, data_label, data_type, data_expr):
     cursor = self.connection.cursor()
@@ -221,6 +223,9 @@ class SQLiteDB:
 
     sys.stdout.write('\n')
 
+  ###############################
+  # Moe
+  ###############################
   # execute query on DB
   def execute(self, cmd):
     cursor = self.connection.cursor()

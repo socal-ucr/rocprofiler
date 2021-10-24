@@ -750,6 +750,10 @@ else:
   if ext_trace_found:
     dform.gen_ext_json_trace(db, 'rocTX', START_NS, jsonfile)
 
+  ###############################
+  # Moe
+  # Maybe, Maybe stats file
+  ###############################
   if len(var_table) != 0:
     dform.post_process_data(db, 'A', csvfile)
     dform.gen_table_bins(db, 'A', statfile, 'KernelName', 'DurationNs')
@@ -761,6 +765,10 @@ else:
     dform.gen_table_bins(db, 'HSA', hsa_statfile, 'Name', 'DurationNs')
     dform.gen_api_json_trace(db, 'HSA', START_NS, jsonfile)
 
+  ###############################
+  # Moe
+  # Generate copy files
+  ###############################
   if copy_trace_found:
     dform.post_process_data(db, 'COPY')
     dform.gen_table_bins(db, 'COPY', copy_statfile, 'Name', 'DurationNs')

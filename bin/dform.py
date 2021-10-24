@@ -26,6 +26,9 @@ def gen_message(outfile):
   if outfile != '':
     print("File '" + outfile + "' is generating")
 
+###############################
+# Moe
+###############################
 def post_process_data(db, table_name, outfile = ''):
 #  db.add_data_column('A', 'DispDurNs', 'INTEGER', 'BeginNs - DispatchNs')
 #  db.add_data_column('A', 'ComplDurNs', 'INTEGER', 'CompleteNs - EndNs')
@@ -35,11 +38,17 @@ def post_process_data(db, table_name, outfile = ''):
   if outfile != '': db.dump_csv(table_name, outfile)
   gen_message(outfile)
 
+###############################
+# Moe
+###############################
 def gen_data_bins(db, outfile):
   db.execute('create view C as select Name, Calls, TotalDurationNs, TotalDurationNs/Calls as AverageNs, TotalDurationNs*100.0/(select sum(TotalDurationNs) from %s) as Percentage from %s order by TotalDurationNs desc;' % ('B', 'B'));
   db.dump_csv('C', outfile)
   db.execute('DROP VIEW C')
 
+###############################
+# Moe
+###############################
 def gen_table_bins(db, table, outfile, name_var, dur_ns_var):
   db.execute('create view B as select (%s) as Name, count(%s) as Calls, sum(%s) as TotalDurationNs from %s group by %s' % (name_var, name_var, dur_ns_var, table, name_var))
   gen_data_bins(db, outfile)
